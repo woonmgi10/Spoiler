@@ -506,7 +506,7 @@ $(document).ready(function() {
 							str + "</li>";
 						}
 					});
-				//$(".uploadResult ul").html(str);
+				$(".uploadResult ul").html(str);
 			});
 	})();
 });
