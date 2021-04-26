@@ -293,18 +293,7 @@ $(document).ready(function() {
 		
 		var replyer = null;
 		
-		<sec:authorize access="isAuthenticated()">
 		
-		replyer='<sec:authentication property="principal.username"/>';
-		
-		var csrfHeaderName="${_csrf.headerName}";
-		var csrfTokenValue="${_csrf.token}";
-		
-//		$(document).ajaxSend(function(e, xhr, options) {
-//			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-//		});	주석이에요
-		
-		</sec:authorize>
 		
 		$("#addReplyBtn").on("click", function(e) {
 			
@@ -490,6 +479,7 @@ $(document).ready(function() {
 
 </script>
 
+
 <script>
 $(document).ready(function() {
 	(function() {
@@ -516,10 +506,12 @@ $(document).ready(function() {
 							str + "</li>";
 						}
 					});
-				$(".uploadResult ul").html(str);
+				//$(".uploadResult ul").html(str);
 			});
 	})();
 });
+
+
 </script>
 
 
@@ -571,6 +563,18 @@ function showImage(fileCallPath) {
 	.animate({width:'100%', height:'100%'}, 1000);
 }
 
+<sec:authorize access="isAuthenticated()">
+
+replyer='<sec:authentication property="principal.username"/>';
+
+var csrfHeaderName="${_csrf.headerName}";
+var csrfTokenValue="${_csrf.token}";
+
+$(document).ajaxSend(function(e, xhr, options) {
+	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+});	
+
+</sec:authorize>
 </script>
 
 
