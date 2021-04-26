@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="org.spoiler.board.free.mapper.FreeReplyMapper">
+  
+  <insert id="insert">
+  insert into spo_free_reply (bno, reply, replyer) values (#{bno}, #{reply}, #{replyer})
+  </insert>
+  
+  <select id="read" resultType="org.spoiler.board.free.domain.FreeReplyVO">
+  select * from spo_free_reply where rno = #{rno}
+  
+  </select>
+
+	<delete id="delete">
+	
+	delete from spo_free_reply where rno = #{rno}
+	
+	</delete>
+	
+	<update id="update">
+	
+	update spo_free_reply set reply = #{reply}, replyer = #{replyer}, updatedate = now() where rno = #{rno}
+	
+	</update>
+	
+	<select id="getListWithPaging" resultType="org.spoiler.board.free.domain.FreeReplyVO">
+	<![CDATA[
+	select rno, bno, reply, replyer, replyDate, updatedate from spo_free_reply
+	where bno=#{bno} order by rno > 0 asc limit #{cri.skip}, #{cri.amount}
+	]]>
+	</select>
+	
+	<select id="getCountBno" resultType="int">
+	<![CDATA[
+	select count(rno) from spo_free_reply where bno = #{bno}
+	]]>
+	</select>
+
+
+  </mapper>

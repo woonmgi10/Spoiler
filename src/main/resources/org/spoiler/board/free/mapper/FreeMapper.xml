@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="org.spoiler.board.free.mapper.FreeMapper">
+  
+  <select id="getList" resultType="org.spoiler.board.free.domain.FreeVO">
+  <![CDATA[
+  select * from spo_free where bno > 0 order by bno desc
+  ]]> 
+  </select>
+  
+  <sql id="search">
+	<where>
+		<if test="type != null">
+			 
+			<foreach item="type" collection="typeArr" separator="OR" open="(" close=")">
+
+			<choose>
+				<when test="type == 't'.toString()">
+					title like concat('%', #{keyword}, '%')
+				</when>
+				<when test="type == 'c'.toString()">
+					content like concat('%', #{keyword}, '%')
+				</when>
+				<when test="type == 'w'.toString()">
+					writer like concat('%', #{keyword}, '%')
+				</when>
+
+              </choose>
+			</foreach>
+			
+		</if>
+	</where>
+</sql>
+  
+  <select id="getListWithPaging" resultType="org.spoiler.board.free.domain.FreeVO">
+  select * from spo_free 
+  <include refid="search"></include>
+  order by bno desc limit #{skip}, #{amount}
+  </select>
+  
+  <select id="read" resultType="org.spoiler.board.free.domain.FreeVO">
+  select * from spo_free where bno = #{bno}
+  </select>
+  
+  <delete id="delete">delete from spo_free where bno = #{bno}</delete>
+  
+  <insert id="insert">
+  	insert into spo_free(title,content,writer) 
+  	values(#{title},#{content},#{writer})
+  	
+  	<selectKey order="AFTER" keyProperty="bno" resultType="long">
+  	select last_insert_id()
+  	</selectKey>
+  	
+  </insert>
+  
+  <insert id="insertSelectKey">
+
+		<selectKey keyProperty="bno" order="AFTER" resultType="long">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into spo_free (title, content, writer) values (#{title},
+		#{content}, #{writer})
+
+	</insert>
+  
+  <select id="getTotalCount" resultType="int">
+  select count(bno) from spo_free
+  <include refid="search"></include>
+  </select>
+  
+  <update id="updateReplyCnt">
+ update spo_free set replycnt = (select count(rno) from spo_free_reply where spo_free_reply.bno = #{bno})
+  </update>
+  
+  <update id="update">
+  update spo_free
+  set title = #{title},
+  content = #{content},
+  writer = #{writer},
+  updateDate = now()
+  where bno = #{bno}
+   </update>
+</mapper>
+
