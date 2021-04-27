@@ -58,7 +58,7 @@
 										name="password" type="password" value="">
 								</div>
 								<div class="checkbox">
-									<label> <input name="remember-me" type="checkbox">Remember
+									<label><input name="remember-me" type="checkbox">Remember
 										Me
 									</label>
 								</div>

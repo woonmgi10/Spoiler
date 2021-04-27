@@ -4,6 +4,11 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+	
+	config.removeButtons = 'cke_button_icon cke_button__save_icon';
+	
+	
+	
 	config.enterMode = CKEDITOR.ENTER_BR
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';

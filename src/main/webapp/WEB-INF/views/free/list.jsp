@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp"%>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- End Navbar -->
 <div class="content">
@@ -137,82 +137,61 @@
 
 
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
+		var result = '<c:out value="${result}"/>';
 
-						var result = '<c:out value="${result}"/>';
+		checkModal(result);
 
-						checkModal(result);
+		history.replaceState({}, null, null);
 
-						history.replaceState({}, null, null);
+		function checkModal(result) {
+		if (result === '' || history.state) {
+			return;
+			}
+		if (parseInt(result) > 0) {
+			$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+			}
+		$("#myModal").modal("show");
+		}
+		$("#regBtn").on("click", function() {
+			self.location = "/free/register";
+			});
 
-						function checkModal(result) {
-							if (result === '' || history.state) {
-								return;
-							}
-							if (parseInt(result) > 0) {
-								$(".modal-body").html(
-										"게시글 " + parseInt(result)
-												+ " 번이 등록되었습니다.");
-							}
-							$("#myModal").modal("show");
-						}
-						$("#regBtn").on("click", function() {
-							self.location = "/free/register";
-						});
+		var actionForm = $("#actionForm");
 
-						var actionForm = $("#actionForm");
+		$(".page-item a").on("click", function(e) {
+			e.preventDefault();
 
-						$(".page-item a").on(
-								"click",
-								function(e) {
+			console.log('click');
 
-									e.preventDefault();
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 
-									console.log('click');
+			actionForm.submit();
+			
+		});
 
-									actionForm.find("input[name='pageNum']")
-											.val($(this).attr("href"));
-
-									actionForm.submit();
-
-								});
-
-						$(".move")
-								.on(
-										"click",
-										function(e) {
-											e.preventDefault();
-											actionForm
-													.append("<input type='hidden' name='bno' value='"
-															+ $(this).attr(
-																	"href")
-															+ "'>");
-											actionForm.attr("action",
-													"/free/get");
-											actionForm.submit();
-										});
+		$(".move").on("click", function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href") + "'>");
+			actionForm.attr("action", "/free/get");
+			actionForm.submit();
+			});
 						
-						var searchForm = $("#searchForm");
-						$("#searchForm button").on("click", function(e) {
-							if(!searchForm.find("option:selected").val()) {
-								alert("검색종류를 선택하세요");
-								return false;
-							}
-							
-							if(!searchForm.find("input[name='keyword']").val()) {
-								alert("키워드를 입력하세요");
-								return false;
-							}
-														
-							searchForm.find("input[name='pageNum']").val("1");
-							e.preventDefault();
-							
-							searchForm.submit();
-						});
-
-					});
+			var searchForm = $("#searchForm");
+			$("#searchForm button").on("click", function(e) {
+				if(!searchForm.find("option:selected").val()) {
+					alert("검색종류를 선택하세요");
+					return false;
+					}
+				if(!searchForm.find("input[name='keyword']").val()) {
+					alert("키워드를 입력하세요");
+					return false;
+					}
+				searchForm.find("input[name='pageNum']").val("1");
+				e.preventDefault();
+				searchForm.submit();
+				});
+			});
 </script>
 
 

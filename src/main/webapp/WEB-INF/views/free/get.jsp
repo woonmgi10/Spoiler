@@ -9,10 +9,6 @@
 <%@include file="../includes/header.jsp"%>
 
 
-
-<script src="/ckeditor/ckeditor.js"></script>
-
-
 <div class="content">
 	<div class="row">
 		<div class="col-lg-12">
@@ -38,14 +34,8 @@
 
 					<div class="form-group">
 						<label>내용</label>
-						<textarea class="form-control" style="max-height: 350px" rows="15"
-							name='content' id = "content" readonly="readonly"><c:out
-								value="${free.content}" /></textarea>
-								
-						<script>
-						CKEDITOR.replace("content");
-						
-						</script>
+						<pre class="content" style="padding:1rem;">${free.content}</pre>
+
 					</div>
 
 
@@ -79,7 +69,6 @@
 		</div>
 	</div>
 	<div class="panel-heading">
-		<i class="fa fa-comments fa-fw"></i> Reply
 		<sec:authorize access="isAuthenticated()">
 			<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>댓글작성</button>
 		</sec:authorize>
@@ -261,7 +250,7 @@ $(document).ready(function() {
 					if (list == null
 							|| list.length == 0) {
 						return;
-					}
+					} else
 					for (var i = 0, len = list.length || 0; i < len; i++) {
 						str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
 						str += " <div><div class='header'><strong class='primary-font'>"
@@ -278,6 +267,7 @@ $(document).ready(function() {
 					}
 					replyUL.html(str);
 					showReplyPage(replyCnt);
+					
 				});//end function
 		}//end showList
 		
@@ -293,6 +283,18 @@ $(document).ready(function() {
 		
 		var replyer = null;
 		
+		<sec:authorize access="isAuthenticated()">
+		
+		replyer='<sec:authentication property="principal.username"/>';
+
+		var csrfHeaderName="${_csrf.headerName}";
+		var csrfTokenValue="${_csrf.token}";
+
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});	 
+
+		</sec:authorize>
 		
 		
 		$("#addReplyBtn").on("click", function(e) {
@@ -563,18 +565,7 @@ function showImage(fileCallPath) {
 	.animate({width:'100%', height:'100%'}, 1000);
 }
 
-<sec:authorize access="isAuthenticated()">
 
-replyer='<sec:authentication property="principal.username"/>';
-
-var csrfHeaderName="${_csrf.headerName}";
-var csrfTokenValue="${_csrf.token}";
-
-$(document).ajaxSend(function(e, xhr, options) {
-	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-});	
-
-</sec:authorize>
 </script>
 
 

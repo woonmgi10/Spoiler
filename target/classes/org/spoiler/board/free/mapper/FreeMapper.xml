@@ -72,7 +72,7 @@
   </select>
   
   <update id="updateReplyCnt">
- update spo_free set replycnt = (select count(rno) from spo_free_reply where spo_free_reply.bno = #{bno})
+ update spo_free set replycnt = replycnt + #{amount} where bno = #{bno}
   </update>
   
   <update id="update">

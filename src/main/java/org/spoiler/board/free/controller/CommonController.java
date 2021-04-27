@@ -11,6 +11,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CommonController {
 
+	@GetMapping("/test")
+	public void testGet() {
+		log.info("gettestssssssssss");
+	}
+	
 	@GetMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
 		log.info("access Denied: " + auth);
