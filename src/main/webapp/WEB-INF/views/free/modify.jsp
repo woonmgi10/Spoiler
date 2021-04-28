@@ -7,6 +7,8 @@
 
 <%@include file="../includes/header.jsp"%>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 
 <script src="/ckeditor/ckeditor.js"></script>
 
@@ -68,8 +70,8 @@
 						<sec:authorize access="isAuthenticated()">
 						<c:if test="${pinfo.username eq free.writer }">
 						
-						<button type="submit" data-oper='modify' class="btn btn-default">수정</button>
-						<button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>
+						<button type="submit" data-oper='modify' class="btn btn-default" id="btnModifyClick">수정</button>
+						<button type="submit" data-oper='remove' class="btn btn-danger" id="btnRemoveClick">삭제</button>
 						
 						</c:if>
 						</sec:authorize>
@@ -207,6 +209,24 @@ width: 100px;
 			}
 			formObj.submit();
 		});
+	});
+	
+	$('#btnModifyClick').on('click', function(e) {
+		Swal.fire({
+			position: 'top-end',
+			  icon: 'success',
+			  title: 'Your work has been saved',
+			  showConfirmButton: false,
+			  timer: 1500
+		})
+	});
+	
+	$('#btnRemoveClick').on('click', function(e) {
+		Swal.fire({
+			icon: 'error',
+			  title: 'Oops...',
+			  text: 'Something went wrong!'
+		})
 	});
 </script>
 

@@ -43,7 +43,7 @@
 						</c:forEach>
 					</table>
 
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		<!-- 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
@@ -58,13 +58,12 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">닫기</button>
-									<button type="button" class="btn btn-primary">Save
-										changes</button>
+									<button type="button" class="btn btn-primary">Save changes</button>
 								</div>
 							</div>
 						</div>
 
-					</div>
+					</div>  -->
 					<div class='row'>
 						<div class="col-lg-12">
 
@@ -84,12 +83,11 @@
 									<c:out value="${pageMaker.cri.type eq 'tw'?'selected':'' }"/>>제목+작성자</option>
 									<option value="tcw"
 									<c:out value="${pageMaker.cri.type eq 'tcw'?'selected':'' }"/>>제목+내용+작성자</option>
-								</select> <input type='text' name='keyword' 
-								value='<c:out value="${pageMaker.cri.keyword }"/>' />
+								</select> <input type='text' name='keyword' value=' <c:out value="${pageMaker.cri.keyword }"/>' />
 								<input type='hidden' name='pageNum'
-								value='<c:out value="${pageMaker.cri.pageNum }"/>' />
+								value=' <c:out value="${pageMaker.cri.pageNum }"/>' />
 								<input type='hidden' name='amount'
-								value='<c:out value="${pageMaker.cri.amount }"/>' />
+								value=' <c:out value="${pageMaker.cri.amount }"/>' />
 								<button class='btn btn-default'>검색</button>
 							</form>
 						</div>
@@ -135,8 +133,9 @@
 	<input type='hidden' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
 </form>
 
-
 <script type="text/javascript">
+
+
 	$(document).ready(function() {
 		var result = '<c:out value="${result}"/>';
 
