@@ -83,10 +83,10 @@ public class FreeController {
 		if (service.modify(free)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword",cri.getKeyword());
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword",cri.getKeyword());
 		
 		return "redirect:/free/list" + cri.getListLink();
 	}

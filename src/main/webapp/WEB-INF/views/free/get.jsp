@@ -8,6 +8,7 @@
 
 <%@include file="../includes/header.jsp"%>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <div class="content">
 	<div class="row">
@@ -297,7 +298,7 @@ $(document).ready(function() {
 		</sec:authorize>
 		
 		
-		$("#addReplyBtn").on("click", function(e) {
+ 		$("#addReplyBtn").on("click", function(e) {
 			
 			modal.find("input").val("");
 			modal.find("input[name='replyer']").val(replyer);
@@ -313,7 +314,7 @@ $(document).ready(function() {
 		});
 		
 
-		modalRegisterBtn.on("click", function(e) {
+ 		modalRegisterBtn.on("click", function(e) {
 		var reply = {
 			reply : modalInputReply.val(),
 			replyer : modalInputReplyer.val(),
@@ -329,7 +330,8 @@ $(document).ready(function() {
 			showList(-1);
 		});	
 	});
-		
+ 		
+		//댓글등록버튼 함수 
 		$("#addReplyBtn").on("click", function(e) {
 			
 			modal.find("input").val("");
@@ -344,8 +346,8 @@ $(document).ready(function() {
 			
 		});
 		
-
-		modalRegisterBtn.on("click", function(e) {
+		//등록버튼
+ 		modalRegisterBtn.on("click", function(e) {
 			var reply = {
 				reply : modalInputReply.val(),
 				replyer : modalInputReplyer.val(),
@@ -368,6 +370,7 @@ $(document).ready(function() {
 			});
 		});
 
+		//
 		modalModBtn.on("click", function(e) {
 			
 			var originalReplyer = modalInputReplyer.val();
@@ -399,6 +402,7 @@ $(document).ready(function() {
 			});
 		});
 
+		
 		modalRemoveBtn.on("click", function(e) {
 			var rno = modal.data("rno");
 			
@@ -476,6 +480,15 @@ $(document).ready(function() {
 			showList(pageNum);
 		});
 		
+});
+
+$("#modalRegisterBtn").on('click', function(e) {
+	Swal.fire({
+		position: 'center',
+		  icon: 'success',
+		  title: '댓글작성완료',
+		  showConfirmButton: false
+	})
 });
 
 

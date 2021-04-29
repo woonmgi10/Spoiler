@@ -6,9 +6,9 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 	
-
 <%@include file="../includes/header.jsp"%>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="/ckeditor/ckeditor.js"></script>
 
 <div class="content">
@@ -42,6 +42,7 @@
 						
 						<button type="submit" class="btn btn-default">등록 버튼</button>
 						<button type="reset" class="btn btn-default">취소 버튼</button>
+						<a class="popup.html" onclick="window.open(/test/,'_blank','width=600,height=400'); return false">도서정보</a>
 
 					</form>
 
@@ -74,58 +75,30 @@
 <script>
 	$(document).ready(function(e) {
 		var formObj = $("form[role='form']");
-		$("button[type='submit']")
-								.on(
-										"click",
-										function(e) {
-											e.preventDefault();
-
-											console.log("submit clicked");
-
-											var str = "";
-
-											$(".uploadResult ul li")
-													.each(
-															function(i, obj) {
-																var jobj = $(obj);
-
-																console
-																		.dir(jobj);
-
-																str += "<input type='hidden' name='attachList["
-																		+ i
-																		+ "].fileName' 		value='"
-																		+ jobj
-																				.data("filename")
-																		+ "'>";
-																str += "<input type='hidden' name='attachList["
-																		+ i
-																		+ "].uuid' 			value='"
-																		+ jobj
-																				.data("uuid")
-																		+ "'>";
-																str += "<input type='hidden' name='attachList["
-																		+ i
-																		+ "].uploadPath' 	value='"
-																		+ jobj
-																				.data("path")
-																		+ "'>";
-																str += "<input type='hidden' name='attachList["
-																		+ i
-																		+ "].fileType' 		value='"
-																		+ jobj
-																				.data("type")
-																		+ "'>";
-															});
-
-											/* formObj.append(str); */
-											console.log(str);
-											console.log(formObj);
-											formObj.append(str).submit();
-
-										})//function 564
-
-					})//function 556
+		$("button[type='submit']").on("click",function(e) {
+			e.preventDefault();
+			console.log("submit clicked");
+			var str = "";
+			$(".uploadResult ul li").each(function(i, obj) {
+				var jobj = $(obj);
+				console.dir(jobj);
+				str += "<input type='hidden' name='attachList["+ i + "].fileName' value='" + jobj.data("filename") + "'>";
+				str += "<input type='hidden' name='attachList["+ i + "].uuid' value='"+ jobj.data("uuid") + "'>";
+				str += "<input type='hidden' name='attachList["+ i + "].uploadPath' value='"+ jobj.data("path") + "'>";
+				str += "<input type='hidden' name='attachList["+ i + "].fileType' value='"+ jobj.data("type") + "'>";
+				});
+			/* formObj.append(str); */
+			console.log(str);
+			console.log(formObj);
+			
+			formObj.append(str);
+			setTimeout(() => {
+				formObj.submit();	
+			}, 1000);
+			
+		})//function 564
+	})//function 556
+	
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	var maxSize = 5242880;
 
@@ -255,7 +228,14 @@
 		});
 	});
 	
-	
+	$("button[type='submit']").on('click', function(e) {
+		Swal.fire({
+			position: 'center',
+			  icon: 'success',
+			  title: '등록완료',
+			  showConfirmButton: false
+		})
+	});
 
 	
 </script>

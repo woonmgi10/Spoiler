@@ -205,29 +205,35 @@ width: 100px;
 					str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
 					str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+jobj.data("type")+"'>";
 				});
-				formObj.append(str).submit();
+				formObj.append(str);
+				setTimeout(() => {
+					formObj.submit();	
+				}, 1000);
+				
 			}
-			formObj.submit();
+			setTimeout(()=> {formObj.submit()}, 1000);
 		});
 	});
 	
 	$('#btnModifyClick').on('click', function(e) {
 		Swal.fire({
-			position: 'top-end',
+			position: 'center',
 			  icon: 'success',
-			  title: 'Your work has been saved',
-			  showConfirmButton: false,
-			  timer: 1500
+			  title: '수정완료',
+			  showConfirmButton: false
 		})
 	});
 	
 	$('#btnRemoveClick').on('click', function(e) {
 		Swal.fire({
-			icon: 'error',
-			  title: 'Oops...',
-			  text: 'Something went wrong!'
+			position: 'center',
+			  icon: 'success',
+			  title: '삭제완료',
+			  showConfirmButton: false
 		})
 	});
+	
+
 </script>
 
 <script>
