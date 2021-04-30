@@ -31,10 +31,11 @@
 							value='<sec:authentication property="principal.username"/>' readonly="readonly">
 						</div>
 
-						<div style = "width:800px;">내용<textarea id = "content" name='content' rows = "5" cols = "80"
+						<div style = "width:800px;">내용<textarea id ="content" name='content' rows = "5" cols = "80"
 						placeholder = "상품설명을 입력하세요"></textarea>
 						
 						<script>
+						
 						CKEDITOR.replace("content");
 						
 						</script>
@@ -43,7 +44,7 @@
 						<button type="submit" class="btn btn-default">등록 버튼</button>
 						<button type="reset" class="btn btn-default">취소 버튼</button>
 						<a class="popup.html" onclick="window.open(/test/,'_blank','width=600,height=400'); return false">도서정보</a>
-
+						
 					</form>
 
 				</div>
@@ -74,6 +75,23 @@
 
 <script>
 	$(document).ready(function(e) {
+
+		let searchResult = "";
+		
+		const editor = $("#content");
+
+		function setContent(htmlCode) {
+			
+			searchResult = htmlCode;
+
+			editor.val(htmlCode);
+			
+			CKEDITOR.instances['content'].insertHtml(htmlCode);
+
+		}
+
+		window.setInfo = setContent;
+		
 		var formObj = $("form[role='form']");
 		$("button[type='submit']").on("click",function(e) {
 			e.preventDefault();
