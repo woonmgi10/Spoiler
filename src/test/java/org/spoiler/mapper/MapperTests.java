@@ -34,6 +34,7 @@ public class MapperTests {
 		free.setTitle("새로작성");
 		free.setContent("중간작성");
 		free.setWriter("남웅지");
+		free.setCheckBox(true);
 		
 		mapper.insert(free);
 		

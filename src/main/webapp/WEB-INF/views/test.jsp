@@ -19,21 +19,27 @@
  		<option value="002">해외도서</option>
  		<option value="003">ebook</option>
  		<option value="004">e러닝</option>
-	</select>
-	
-   <div class="header">
-      <h5>도서를 검색하세요</h5>
-   </div>
+	</select> 
+   
+   
+   
+   <div class="container">도서를 검색하세요</div>
    <input id="bookName" placeholder="찾으시는 도서명을 넣어주세요" size="50" type="text">
-   <button id="search">검색</button>
-   
-   <button id='checkBtn'>체크</button>
-   
-   <p class='result'></p>
+   <button id="search">검색</button> <button id='checkBtn'>등록</button>
+    
+    
+    <div class="item"></div>    
+    <pre class='result'></pre>
 
+	<div class="pageNation-wrapper clearfix">
+	<ul class="pagination float--right" id = "pages"></ul>
+	</div>
+	
+	
    <script src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"></script>
+
 
    <script>
       $(function() {
@@ -63,18 +69,20 @@
                
                let str = "";
                
-               for(var i = 0; i < msg.documents.length; i++) {            
-                  str += "<strong>" + msg.documents[i].title + "</strong>";
-                  str += "<img src='" + msg.documents[i].thumbnail +"'>";
-               } 
+               for(var i = 0; i < msg.documents.length; i++) {
+            	   str += "<img src='" + msg.documents[i].thumbnail +"'>";
+            	   str += "<strong>" + msg.documents[i].title + "</strong>";
+            	   str += "<strong>" + msg.documents[i].authors + "</strong>";
+            	   str += "<strong>" + msg.documents[i].isbn + "</strong>";
+            	   str += "<p></p>";
+              <!-- str += "<strong>" +'<button id="submit"></button>' + "</strong>"; -->
+            	   str += "<p></p>";
+            	   } 
                result.html(str);
             });
          })
 
       });
-      var obj = JSON.parse('{ "이름":"남웅지", "나이":26, "지역":"경기" }')
-      document.getElementById("").innerHTML = obj.이름 +","+obj.나이;
-      
       
       var input = document.getElementById("bookName");
       input.addEventListener("keyup", function(event) {
@@ -83,8 +91,10 @@
               document.getElementById("search").click();
           }
       });
+      
+      
+      
    </script>
-</body>
-
+   
 </body>
 </html>

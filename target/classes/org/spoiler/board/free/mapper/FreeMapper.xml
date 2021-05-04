@@ -47,8 +47,8 @@
   <delete id="delete">delete from spo_free where bno = #{bno}</delete>
   
   <insert id="insert">
-  	insert into spo_free(title,content,writer) 
-  	values(#{title},#{content},#{writer})
+  	insert into spo_free(title,content,writer,checkBox)
+  	values(#{title},#{content},#{writer},#{checkBox})
   	
   	<selectKey order="AFTER" keyProperty="bno" resultType="long">
   	select last_insert_id()
@@ -61,8 +61,8 @@
 		<selectKey keyProperty="bno" order="AFTER" resultType="long">
 			select LAST_INSERT_ID()
 		</selectKey>
-		insert into spo_free (title, content, writer) values (#{title},
-		#{content}, #{writer})
+		insert into spo_free (title, content, writer, checkBox) values (#{title},
+		#{content}, #{writer}, #{checkBox})
 
 	</insert>
   
@@ -80,6 +80,7 @@
   set title = #{title},
   content = #{content},
   writer = #{writer},
+  checkBox = #{checkBox},
   updateDate = now()
   where bno = #{bno}
    </update>

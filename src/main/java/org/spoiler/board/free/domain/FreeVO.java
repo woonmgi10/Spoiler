@@ -20,6 +20,7 @@ public class FreeVO {
 	private Date updateDate;	
 	private Integer replyCnt;
 	private Integer viewCnt;
+	private boolean checkBox;
 	
 	private List<FreeAttachVO> attachList;
 }

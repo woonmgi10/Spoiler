@@ -26,6 +26,7 @@
 							<label>제목</label> <input class="form-control" name='title'>
 						</div>
 
+
 						<div class="form-group">
 							<label>글쓴이</label> <input class="form-control" name='writer'
 							value='<sec:authentication property="principal.username"/>' readonly="readonly">
@@ -34,6 +35,8 @@
 						<div style = "width:800px;">내용<textarea id ="content" name='content' rows = "5" cols = "80"
 						placeholder = "상품설명을 입력하세요"></textarea>
 						
+						<button class="popup.html" onclick="window.open(/test/,'_blank','width=600,height=400'); return false">도서정보 검색</button>						
+						
 						<script>
 						
 						CKEDITOR.replace("content");
@@ -41,10 +44,12 @@
 						</script>
 						</div> 
 						
-						<button type="submit" class="btn btn-default">등록 버튼</button>
-						<button type="reset" class="btn btn-default">취소 버튼</button>
-						<a class="popup.html" onclick="window.open(/test/,'_blank','width=600,height=400'); return false">도서정보</a>
-						
+						<button type="submit" class="btn btn-default">등록</button>
+						<button type="reset" class="btn btn-default">취소</button>
+						<div>
+							<input type="checkBox" name="checkBox"> 스포일러 있음
+						</div>
+					
 					</form>
 
 				</div>
@@ -247,6 +252,7 @@
 	});
 	
 	$("button[type='submit']").on('click', function(e) {
+		
 		Swal.fire({
 			position: 'center',
 			  icon: 'success',
@@ -254,6 +260,8 @@
 			  showConfirmButton: false
 		})
 	});
+	
+	
 
 	
 </script>
