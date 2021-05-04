@@ -35,8 +35,8 @@
 
 					<div class="form-group">
 					 
-						<label for="myCheck">내용 열람</label>
-						<input type="checkbox" id="myCheck" name="checkBox" onclick="myFunction()">
+						<label for="checkYn">내용 열람</label>
+						<input type="checkbox" id="checkYn" name="checkYn" onclick="myFunction()" ${free.checkBox==false?"checked":""}>
 						
 						<pre id="text" style="display:none" class="content" style="padding:1rem;">${free.content}</pre>
 
@@ -585,22 +585,24 @@ function showImage(fileCallPath) {
 </script>
 
 <script>
+
+
 function myFunction() {
-  var checkBox = document.getElementById("myCheck");
-  var text = document.getElementById("text");
+	
+  var checkBox = document.getElementById("checkYn");
+  var text = $("#text");
+  
+  //alert("checked: " + checkBox.checked);
+  
   if (checkBox.checked == true){
-    text.style.display = "block";
+    text.show();
   } else {
-     text.style.display = "none";
+    text.hide();
   }
 }
-</script>
-<script>
-function getCheckBox(){
-	if (chec === )
-	$('input:checkbox[name="checkBox"]').is(":checked") ==  true
-	
-}
+
+myFunction();
+
 </script>
 
 <%@include file="../includes/footer.jsp"%>
