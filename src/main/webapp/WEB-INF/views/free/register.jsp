@@ -42,13 +42,10 @@
 						CKEDITOR.replace("content");
 						
 						</script>
-						</div> 
+						</div>
 						
 						<button type="submit" class="btn btn-default">등록</button>
 						<button type="reset" class="btn btn-default">취소</button>
-						<div>
-							<input type="checkBox" name="checkBox"> 스포일러 있음
-						</div>
 					
 					</form>
 
@@ -176,56 +173,42 @@
 		var uploadUL = $(".uploadResult ul");
 		var str = "";
 
-		$(uploadResultArr)
-				.each(
-						function(i, obj) {
+		$(uploadResultArr).each(function(i, obj) {
+			//image type
+			if (obj.image) {
+				var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 
-							//image type
-							if (obj.image) {
-
-								var fileCallPath = encodeURIComponent(obj.uploadPath
-										+ "/s_" + obj.uuid + "_" + obj.fileName);
-
-								/* str += "<li><div>"*/
-								str += "<li data-path='"+obj.uploadPath+"'";													
-				str += "data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'";	
-				str += " ><div>";
-								str += "<span> " + obj.fileName + "</span>"
-								/* str += 	"<button type='button' 													class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
-								/* str += 	"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
-								str += "<button type='button' data-file=\'"+fileCallPath+"\' "
-				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-								str += "<img src='/display?fileName="
-										+ fileCallPath + "'>";
-								str += "</div>";
-								str + "</li>";
-
-							} else {
-
-								var fileCallPath = encodeURIComponent(obj.uploadPath
-										+ "/" + obj.uuid + "_" + obj.fileName);
-								var fileLink = fileCallPath.replace(new RegExp(
-										/\\/g), "/")
-
-								/* str += "<li><div>" */
-								str += "<li "
+			/* str += "<li><div>"*/
+			str += "<li data-path='"+obj.uploadPath+"'";													
+			str += "data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'";	
+			str += " ><div>";
+			str += "<span> " + obj.fileName + "</span>"
+			/* str += 	"<button type='button' 													class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
+			/* str += 	"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
+			str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+			str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+			str += "<img src='/display?fileName=" + fileCallPath + "'>";
+			str += "</div>";
+			str + "</li>";
+			} else {
+				var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+				var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/")
+				
+				/* str += "<li><div>" */
+				str += "<li "
 				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div>";
-								str += "<span> " + obj.fileName + "</span>"
-								/* str += 	"<button type='button' 													class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
-								/* str += 	"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
-								str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
+				str += "<span> " + obj.fileName + "</span>"
+				/* str += 	"<button type='button' 													class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
+				/* str += 	"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"; */
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
 				str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-								str += "<img src='/resources/img/attach.png'></a>";
-								str += "</div>";
-								str + "</li>";
-
-							}//if
-
-						})//function
-
-		uploadUL.append(str);
-
-	}//showUploadResult 559
+				str += "<img src='/resources/img/attach.png'></a>";
+				str += "</div>";
+				str + "</li>";
+				}//if
+				})//function
+				uploadUL.append(str);
+		}//showUploadResult 559
 	
 	$(".uploadResult").on("click", "button", function(e) {
 		
@@ -258,9 +241,8 @@
 			  icon: 'success',
 			  title: '등록완료',
 			  showConfirmButton: false
-		})
+		});
 	});
-	
 	
 
 	
