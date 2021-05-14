@@ -32,6 +32,10 @@
 
 	<context:component-scan
 		base-package="org.spoiler.board.free.controller" />
+		<context:component-scan
+		base-package="org.spoiler.board.main.controller" />
+		
+		
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
