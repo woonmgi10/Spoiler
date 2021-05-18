@@ -149,6 +149,7 @@
 			}
 		$("#myModal").modal("show");
 		}
+		
 		$("#regBtn").on("click", function() {
 			self.location = "/free/register";
 			});

@@ -58,7 +58,7 @@
 					<div class="logo-image-small">
 						<img src="../resources/assets/img/logo-small.png">
 					</div> <!-- <p>CT</p> -->
-				</a> <a href="https://www.creative-tim.com"
+				</a> <a href="/main/mainDoor"
 					class="simple-text logo-normal"> Spoiler <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
