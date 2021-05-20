@@ -7,8 +7,6 @@
 
 <bean id="customAccessDenied" class="org.spoiler.board.free.security.CustomAccessDeniedHandler"></bean>
 
-<bean id="customLoginSuccess" class="org.spoiler.board.free.security.CustomLoginSuccessHandler"></bean>
-
 <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 <bean id="customUserDetailsService" class="org.spoiler.board.free.security.CustomUserDetailsService"></bean>

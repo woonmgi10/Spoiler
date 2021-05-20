@@ -9,7 +9,7 @@
 		<id property="userid" column="userid" />
 		<result property="userid" column="userid" />
 		<result property="userpw" column="userpw" />
-		<result property="userName" column="userName" />
+		<result property="username" column="username" />
 		<result property="regDate" column="regDate" />
 		<result property="updateDate" column="updateDate" />
 		<collection property="authList" resultMap="authMap">
