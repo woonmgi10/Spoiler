@@ -41,7 +41,7 @@
 
 	<mybatis-spring:scan
 		base-package="org.spoiler.board.free.mapper" />
-
+	
 	<context:annotation-config></context:annotation-config>
 
 	<context:component-scan

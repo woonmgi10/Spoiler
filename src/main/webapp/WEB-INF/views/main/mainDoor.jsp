@@ -54,7 +54,7 @@
 			<div class="p">
 				<div class="d-grid gap-2">
 					<button class="btn btn-light" type="button" id="login">Login</button>
-					<button class="btn btn-light" type="button">Register</button>
+					<button class="btn btn-light" type="button" id="registration">Register</button>
 				</div>
 			</div>
 		</div>
@@ -64,6 +64,10 @@
 		$("#login").on("click", function() {
 			location = "/customLogin";
 		});
+		
+		$("#registration").on("click",function(){
+			location = "/registration";
+		})
 	</script>
 
 </body>
