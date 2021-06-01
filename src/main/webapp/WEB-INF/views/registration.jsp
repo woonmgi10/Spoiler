@@ -21,11 +21,13 @@ background-color : rgba(0, 151, 19, 0.3);
     margin: 0 auto;
     background-color: #fff;
     border-radius: 0.3em;
+    margin:120px auto;
 }
 
 *[role="form"] h2 {
     margin-left: 5em;
     margin-bottom: 1em;
+
 }
 
 </style>
@@ -69,7 +71,7 @@ background-color : rgba(0, 151, 19, 0.3);
                     </div>
                 </div> <!-- /.form-group -->
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Gender</label>
+                    <label class="control-label col-sm-3">성별</label>
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-4">

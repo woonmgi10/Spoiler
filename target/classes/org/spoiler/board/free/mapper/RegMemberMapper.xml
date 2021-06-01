@@ -4,6 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.spoiler.board.free.mapper.RegMemberMapper">
 	<insert id="regMemberJoin">
-		insert into spo_reg_member values(#{memberId},#{memberPw},#{memberName},#{memberMail},#{memberBirth},0, now());
+		insert into spo_reg_member (memberId, memberPw, memberName, memberMail, memberBirth, adminCk, regDate) values (#{memberId},#{memberPw},#{memberName},#{memberMail},#{memberBirth}, 0, now())
 	</insert>
 	</mapper>
